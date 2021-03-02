@@ -1,7 +1,9 @@
 package jdev.server.services;
 //import jdev.domain.Jform;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jdev.domain.RestRequest;
-        import org.springframework.stereotype.Service;
+import jdev.server.controllers.CounterController_SRV;
+import org.springframework.stereotype.Service;
 
 //import jdev.tracker.services.ResponseTick.JForm;
 import org.slf4j.Logger;
@@ -23,13 +25,13 @@ public class getcoord {
     public static RestRequest request=new RestRequest();
     public static String push() throws Exception {
       //  ObjectMapper mapper = new ObjectMapper();
-      //  String jsonString = "[\"1000 Current coordinate: track# 2 lattitude=37.376205 longtitude=-122.1826 United States Palo Alto success\",\"989 Current coordinate: track# 14 lattitude=30.050003 longtitude=31.25 Egypt Misr success\"]";
-        // reader=mapper.reader(String.class);
+       // String jsonString = "[\"1000 Current coordinate: track# 2 lattitude=37.376205 longtitude=-122.1826 United States Palo Alto success\",\"989 Current coordinate: track# 14 lattitude=30.050003 longtitude=31.25 Egypt Misr success\"]";
+      //   reader=mapper.reader(String.class);
        // List list=new ArrayList<>();
      //   mapper.readValue(jsonString,List.class);
       //  request.getCoord();
      //    ObjectMapper mapper = new ObjectMapper();
-       //    String json = mapper.writeValueAsString(request.getCoord()+" "+ CounterController_SRV.showStatus().getStatus());
+      //     String json = mapper.writeValueAsString(request.getCoord()+" "+ CounterController_SRV.showStatus().getStatus());
        //     log.info("POST result2: {}", json);
        //     log.info("2");
        // return ReqCreate.request.getCoord();
@@ -46,8 +48,10 @@ public class getcoord {
         } catch (IOException e) {
             e.printStackTrace();
         }
-             log.info("SRV reading: {}", position);
-        return position;
+            log.info("SRV reading: {}", CounterController_SRV.showStatus().getStatus());
+        return CounterController_SRV.showStatus().getStatus();
+        // log.info("SRV reading: {}", position);
+        //  return position;
     }
 
     }
