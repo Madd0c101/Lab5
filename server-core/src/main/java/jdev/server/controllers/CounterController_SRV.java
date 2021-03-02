@@ -1,13 +1,13 @@
 package jdev.server.controllers;
 import jdev.domain.Response;
 import jdev.domain.RestRequest;
-import net.logstash.logback.marker.Markers;
+//import net.logstash.logback.marker.Markers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import static net.logstash.logback.marker.Markers.append;
+//import static net.logstash.logback.marker.Markers.append;
 import java.util.concurrent.atomic.AtomicLong;
 
 
@@ -33,14 +33,14 @@ public class CounterController_SRV {
     public static Response showStatus() {
         return new Response(STATUS, 1);
     }
-
+/*
     @GetMapping("/requests")
     public Long getRequestsCount() {
         long result = counter.incrementAndGet();
         log.info(Markers.append("Request", result), "Request counter incremented");
         return result;
     }
-
+*/
     /*
     @PostMapping("/post")
     public static Response post(@RequestParam(value = "key") String key, @RequestBody RestRequest request) throws java.lang.Exception{
