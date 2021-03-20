@@ -18,7 +18,7 @@ public class Application {
     private static String foo=null;
     public static void main(String[] args) throws Exception {
 
-//        SpringApplication.run(Application.class, args);
+//        SpringApplication.run(Application.class, args);//ss
           ApplicationContext context = new AnnotationConfigApplicationContext(InjectionContext.class);
     }
 }
