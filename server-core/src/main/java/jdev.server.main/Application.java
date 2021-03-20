@@ -7,6 +7,6 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan({"jdev.server", "jdev.server.services","jdev.tracker","jdev.tracker.services", "jdev.domain"})
 public class Application {
     public static void main(String[] args) throws Exception{
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(Application.class, args);//s
     }
 }
