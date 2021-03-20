@@ -1,28 +1,24 @@
 package jdev.tracker.main;
 //import jdev.tracker.controllers.TrackController;
-import jdev.domain.ReqCreate;
+import jdev.domain.*;
 import jdev.tracker.controllers.InjectionContext;
+import org.apache.commons.io.IOUtils;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.web.client.RestTemplate;
 
-@SpringBootApplication
-@ComponentScan({"jdev.tracker","jdev.tracker.services","jdev.server"})
+import java.io.IOException;
+import java.net.URL;
+
+//@SpringBootApplication
+@ComponentScan({"jdev.tracker","jdev.tracker.services"})
 public class Application {
+    private static String foo=null;
+    public static void main(String[] args) throws Exception {
 
-    public static void main(String[] args) {
-     //   SpringApplication.run(Application.class, args);
-        ApplicationContext context = new AnnotationConfigApplicationContext(InjectionContext.class);
-    }
-
-    @Bean
-    public RestTemplate restTemplate(RestTemplateBuilder builder) {
-        ReqCreate.create();
-        return builder.build();
+//        SpringApplication.run(Application.class, args);
+          ApplicationContext context = new AnnotationConfigApplicationContext(InjectionContext.class);
     }
 }

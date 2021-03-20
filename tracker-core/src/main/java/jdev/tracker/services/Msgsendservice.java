@@ -1,16 +1,17 @@
 package jdev.tracker.services;
-import jdev.tracker.controllers.CounterController_TRK;
+import jdev.domain.Client;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import jdev.domain.RestRequest;
-import jdev.server.controllers.CounterController_SRV;
+
 import javax.annotation.PostConstruct;
 import java.io.IOException;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import jdev.domain.Jform;
-import jdev.domain.ReqCreate;
 
 /**
  * Created by user on 04.02.2021.
@@ -18,28 +19,39 @@ import jdev.domain.ReqCreate;
 
 @Service
 public class Msgsendservice {
- public static RestRequest request=new RestRequest();
-//public static RestRequest request=ReqCreate.request;
+
     private static final Logger log = LoggerFactory.getLogger(Msgsendservice.class);
     private long previous;
     private String foo=null;
+    public static Client request=new Client();
+   // private static Long i= Long.valueOf(0);
+   static AtomicInteger i = new AtomicInteger(0);
+    RestTemplateBuilder builder=new RestTemplateBuilder();
     public void send() throws InterruptedException,Exception,IOException,java.lang.NullPointerException {
-        ReqCreate.create();
-      request=ReqCreate.request;
+     //   ReqCreate.create();
+  //    request=ReqCreate.request;
       //  log.info("sending request");
         long current = System.currentTimeMillis();
      //  log.info((current - previous) + " Current coordinate: " + Jform.fromJson());
+
+        request.setId(i.intValue());
         if (Jform.fromJson()==foo)
         {
-            CounterController_TRK.post("bad",request);
-            request.setCoord("conection lost");
+            request.setMessage("conection lost");
+
         }
         else {
-            request.setCoord((current - previous) + " Current coordinate: " + Jform.fromJson());
-            CounterController_TRK.post("good", request);
+            request.setMessage(Integer.toString(i.incrementAndGet())+ " Current coordinate: " + Jform.fromJson());
+            //(current - previous)
         }
-
-        previous = current;
+        try {
+            String result= builder.build().postForObject("http://localhost:8080/clients",request,String.class);
+        //    i.++;
+            previous = current;
+        }
+        catch (NullPointerException e) {
+            e.printStackTrace();
+        }
     }
 
     @Autowired
